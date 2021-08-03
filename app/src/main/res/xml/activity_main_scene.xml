@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        android:id="@+id/tid"
+        motion:constraintSetEnd="@+id/end1"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000">
+     <OnSwipe motion:dragDirection="dragLeft"
+         motion:touchAnchorId="@id/textView"
+         motion:touchAnchorSide="right"/>
+    </Transition>
+
+    <Transition
+        android:id="@+id/tid2"
+        motion:constraintSetEnd="@+id/end2"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000">
+     <OnSwipe motion:dragDirection="dragRight"
+         motion:touchAnchorId="@id/textView"
+         motion:touchAnchorSide="left"/>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:background="@color/purple_200"
+            android:padding="16dp"
+            motion:layout_constrainedHeight="true"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"/>
+        <Constraint
+            android:id="@+id/forward"
+            android:background="@color/purple_700"
+            motion:layout_constraintBottom_toBottomOf="@id/textView"
+            motion:layout_constraintStart_toEndOf="@id/textView"
+            motion:layout_constraintEnd_toStartOf="@id/archive"
+            motion:layout_constraintTop_toTopOf="@id/textView"/>
+        <Constraint
+            android:id="@+id/archive"
+            android:background="@color/purple_200"
+            motion:layout_constraintBottom_toBottomOf="@id/forward"
+            motion:layout_constraintStart_toEndOf="@id/forward"
+            motion:layout_constraintTop_toTopOf="@id/forward"/>
+        <Constraint
+            android:id="@+id/delete"
+            android:layout_width="50dp"
+            android:layout_height="52dp"
+            android:background="@color/purple_200"
+            motion:layout_constraintBottom_toBottomOf="@id/textView"
+            motion:layout_constraintEnd_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="@id/textView"/>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end1">
+        <Constraint android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="100dp"/>
+
+
+        <Constraint android:id="@+id/forward"
+            motion:layout_constraintBottom_toBottomOf="@id/textView"
+            motion:layout_constraintTop_toTopOf="@id/textView"
+            motion:layout_constraintStart_toEndOf="@id/textView"
+            motion:layout_constraintEnd_toStartOf="@id/archive"/>
+
+        <Constraint android:id="@+id/archive"
+            motion:layout_constraintBottom_toBottomOf="@id/textView"
+            motion:layout_constraintStart_toEndOf="@id/forward"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toTopOf="@id/textView"/>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end2">
+        <Constraint
+            android:id="@+id/textView"
+            android:visibility="gone"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"/>
+        <Constraint
+            android:id="@+id/delete"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            motion:layout_constraintBottom_toBottomOf="@id/textView"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="@id/textView"/>
+    </ConstraintSet>
+</MotionScene>
